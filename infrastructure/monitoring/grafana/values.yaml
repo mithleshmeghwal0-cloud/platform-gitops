@@ -1,15 +1,19 @@
-ingress:
-  enabled: true
-  ingressClassName: nginx
+grafana:
+  service:
+    type: ClusterIP
 
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  ingress:
+    enabled: true
+    ingressClassName: nginx
 
-  hosts:
-    - grafana.mithleshmeghwal.com
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
 
-  tls:
-    - secretName: grafana-tls
-      hosts:
-        - grafana.mithleshmeghwal.com
+    hosts:
+      - grafana.mithleshmeghwal.com
+
+    tls:
+      - secretName: grafana-tls
+        hosts:
+          - grafana.mithleshmeghwal.com
