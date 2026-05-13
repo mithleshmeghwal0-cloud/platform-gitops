@@ -3,10 +3,19 @@ kind: Ingress
 metadata:
   name: hello-ingress
   namespace: apps
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - app.mithleshmeghwal.com
+    secretName: app-tls
   rules:
-  - http:
+  - host: app.mithleshmeghwal.com
+    http:
       paths:
       - path: /
         pathType: Prefix
